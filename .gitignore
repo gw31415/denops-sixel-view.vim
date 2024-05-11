@@ -1,0 +1,16 @@
+# Created by https://www.toptal.com/developers/gitignore/api/deno
+# Edit at https://www.toptal.com/developers/gitignore?templates=deno
+
+### Deno ###
+/.idea/
+/.vscode/
+
+/node_modules
+
+.env
+*.orig
+*.pyc
+*.swp
+db.sqlite3
+
+# End of https://www.toptal.com/developers/gitignore/api/deno
