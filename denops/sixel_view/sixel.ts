@@ -5,7 +5,7 @@ import {
 import { image2sixel } from "npm:sixel";
 
 export async function img2sixel(
-	source: string,
+	source: string | Uint8Array,
 	opts?:
 		| {
 			maxWidth?: number;
