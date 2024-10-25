@@ -1,29 +1,25 @@
-import {
-	createCanvas,
-	loadImage,
-} from "https://deno.land/x/canvas@v1.4.1/mod.ts";
+import { createCanvas, Image } from "jsr:@gfx/canvas";
 import { image2sixel } from "npm:sixel";
 
 export async function img2sixel(
 	source: string | Uint8Array,
 	opts?:
 		| {
-			maxWidth?: number;
-			maxHeight?: number;
-		}
+				maxWidth?: number;
+				maxHeight?: number;
+		  }
 		| undefined,
 ): Promise<{
 	data: string;
 	height: number;
 	width: number;
 }> {
-	const img = await loadImage(source);
-	let [width, height] = [img.width(), img.height()];
+	const img = await (typeof source === "string"
+		? Image.load(source)
+		: new Image(source));
+	let [width, height] = [img.width, img.height];
 	if (opts?.maxWidth && opts?.maxHeight) {
-		const ratio = Math.min(
-			opts.maxWidth / width,
-			opts.maxHeight / height,
-		);
+		const ratio = Math.min(opts.maxWidth / width, opts.maxHeight / height);
 		width = Math.floor(width * ratio);
 		height = Math.floor(height * ratio);
 	} else if (opts?.maxWidth) {
