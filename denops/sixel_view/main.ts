@@ -11,7 +11,7 @@ export function main(denops: Denops): Promise<void> {
 	denops.dispatcher = {
 		img2sixel(source, opts = {}) {
 			assert(source, isUnionOf([isString, isInstanceOf(Uint8Array)]));
-			return img2sixel(source, opts!);
+			return img2sixel(source, opts ?? undefined);
 		},
 	};
 	return Promise.resolve();
