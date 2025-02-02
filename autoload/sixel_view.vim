@@ -12,7 +12,11 @@ function sixel_view#view_sixel(sixel, lnum, cnum) abort
 	call s:echoraw("\x1b[u")
 endfunction
 
+function sixel_view#img2sixel(source, opts) abort
+	return denops#request('sixel_view', 'img2sixel', [a:source, a:opts])
+endfunction
+
 function sixel_view#view(source, opts, lnum, cnum) abort
-	let sixel = denops#request('sixel_view', 'img2sixel', [a:source, a:opts])
+	let sixel = sixel_view#img2sixel(a:source, a:opts)
 	call sixel_view#view_sixel(sixel['data'], a:lnum, a:cnum)
 endfunction
